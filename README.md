@@ -4,7 +4,7 @@ Django app for poll where user can login/register and respond to a poll by anoth
 **Technologies** 
 ---------------------------------------
 
-**front-end**: HTML, CSS, JAVASCRIPT  
-**back-end**: Python  
+**Front-End**: HTML, CSS, JAVASCRIPT  
+**Back-End**: Python  
 **Database**: Sqlite3  
-**frameworks**: Django, Bootstrap  
+**Frameworks**: Django, Bootstrap  
