@@ -1,0 +1,16 @@
+{% extends "polls/account_layout.html" %}
+{% block body %}
+    <!-- form for adding poll question -->
+    <div class="addform">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Add New Poll</legend><br>
+                {{form.as_p}}
+                <button type="submit" class="save btn btn-primary" id="save1">Save</button>
+            </fieldset>
+        </form>
+        <br>
+        <button type="submit" class="save btn btn-dark" id="save2"><a href="{% url 'polls:addchoice' %}" id="anchor1">Add Choice</a></button>
+    </div>
+{% endblock %}

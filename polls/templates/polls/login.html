@@ -1,0 +1,26 @@
+{% extends "polls/layout.html" %}
+{% load static %}
+{% block body %}
+    <!-- display error message if login is incorrect -->
+    {% if errmessage %}
+        <div class="errmsg">{{ errmessage }}</div>
+    {% endif %}
+    <!-- div block for login form -->
+    <div class="formblock" id="formblock">
+        <form action="{% url 'polls:login' %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Login</legend>
+                <div class="form-group">
+                    <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Login">
+            </fieldset>
+        </form>
+    
+        Don't have an account? <a href="{% url 'polls:register' %}" style="color: white;">Register here.</a>
+    </div>
+{% endblock %}

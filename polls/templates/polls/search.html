@@ -1,0 +1,49 @@
+{% extends "polls/account_layout.html" %}
+{% block body %}
+    <!-- display messages after error-->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" align="center" role="alert">
+                {{ message }} 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h3 id="cen">Search Results</h3>
+    <!-- display matching poll cards here -->
+    <div class="cardblock">
+        {% if  poll %}
+            <div style="display:inline-block;">
+                <ul>
+                    {% for question in  poll %}
+                            <a href="{% url 'polls:detail' question.id %}">
+                                <div style="display: inline-block;">
+                                    <div class="card text-white bg-primary mb-3" style="width: 20rem;  text-align:center; display:inline-block;">
+                                        <div class="card-header">Poll: {{ question.question_text }}</div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">CLICK!!!</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        <!-- if no polls then display this block -->
+        {% else %}
+            <div id="pollblock">
+                <div class="row">
+                    <div class="card text-white bg-danger  mb-3 align-items-center">
+                        <div class="card-header">No Matching Poll Here...</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Create a Poll To Post!!!</h5>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

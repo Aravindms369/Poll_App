@@ -1,0 +1,16 @@
+{% extends "polls/account_layout.html" %}
+{% block body %}
+    <!-- form for editing choices -->
+    <div class="addform">
+        <form action="{% url 'polls:editchoice' question.id %}" method="POST" class="choice-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Edit Current Poll Choices</legend><br>
+                {{form.as_p}}
+                <button type="submit" class="save btn btn-primary" id="save1">Save</button>
+            </fieldset>
+            
+        </form>
+        <br>
+    </div>
+{% endblock %}

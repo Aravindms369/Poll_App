@@ -1,0 +1,16 @@
+{% extends "polls/account_layout.html" %}
+{% block body %}
+    <!-- form for deleting a choice from poll -->
+    <div class="addform">
+        <form action="{% url 'polls:deletechoice' question.id %}" method="POST" class="choice-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Delete poll Choices</legend><br>
+                {{form.as_p}}
+                <button type="submit" class="save btn btn-primary" id="save1">Delete</button>
+            </fieldset>
+            
+        </form>
+        <br>
+    </div>
+{% endblock %}

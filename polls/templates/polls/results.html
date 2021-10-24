@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+  <head>  
+      <!-- define character set and responsive viewport-->
+      <meta charset="UTF-8">  
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- define title of web page -->
+      <title>login</title>  
+      <!--  external js script for chart js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <!-- external css style sheets linked-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      
+  </head>
+
+  <body>
+      <!-- navigation bar -->
+      <nav class="navbar navbar-dark text-light bg-success" style="height: 80px;">
+          <div style="text-align: center;">
+              <h1>Result Analysis of Poll</h1>
+          </div>
+          
+          <a class="card-link text-light" href="{% url 'polls:user_home' %}">HOME</a>
+      </nav>
+      <br>
+      <!-- display poll question -->
+      <h1 style="padding-left: 800px;">{{ question.question_text }}</h1>
+      <!-- display chart of analysis -->
+      <div class="card" style="width: 800px; margin:0 auto; padding-left: 100px;">
+          <canvas id="myChart" style="width:100px; max-width:600px"></canvas>
+      </div>
+
+      <script>
+          var xValues = JSON.parse("{{xval|escapejs}}");
+          var yValues = JSON.parse("{{yval|escapejs}}");
+          var barColors = ["red", "green","blue","orange","brown"];
+
+          
+          new Chart("myChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+              }]
+            },
+            options: {
+              legend: {display: false},
+              title: {
+                display: true,
+                text: "Poll Rate"
+              }
+            }
+          });
+      </script>
+      <br>
+
+      <!--JS/JQUERY LIBRARIES-->
+      <script src="{% static 'polls/js/bootstrap.min.js' %}"></script>  
+  </body>  
+</html> 

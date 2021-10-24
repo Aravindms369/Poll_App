@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>  
+        <!-- define character set and responsive viewport-->
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- define title of the page and icon -->
+        <title>Poll House</title>  
+        <link rel = "icon" href ="{% static "polls/image/title_icon.png" %}" type = "image/x-icon"> 
+        <!-- link the external css style sheets -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    
+    <body>
+        <!-- navigation bar -->
+        <nav class="navbar navbar-dark text-light bg-success" style="height: 60px;">
+            <div style="text-align: center;">
+                <a class="navbar-brand" href="{% url 'polls:user_home' %}"><i class="fa fa-fw fa-home"></i> POLL HOUSE</a>
+            </div>
+            <a class="card-link text-light"  href="{% url 'polls:user_home' %}">HOME</a>
+        </nav>
+        <br>
+        <!-- poll question images are displayed here -->
+        <div class="card" style="width: 800px; margin:0 auto;">
+            {% if 'Anime' in question.my_field %}
+                <img class="card-img-top" src= "{% static 'polls/image/img.jpg' %}" alt="Card image cap">     <!--Anime image-->
+            {% endif %}
+
+            {% if 'Football' in question.my_field %}
+                <img class="card-img-top" src= "{% static 'polls/image/img1.jpg' %}" alt="Card image cap">    <!--Football image-->
+            {% endif %}
+
+            {% if 'Framework' in question.my_field %}
+                <img class="card-img-top" src= "{% static 'polls/image/img3.jpg' %}" alt="Card image cap">    <!--Framework image-->
+            {% endif %}
+
+            {% if 'Other' in question.my_field %}
+                <img class="card-img-top" src= "{% static 'polls/image/img4.jpg' %}" alt="Card image cap">    <!--Other image-->
+            {% endif %}
+        <!-- poll question and choices are displayed in the form here -->
+        <div class="card-body">
+            <h5 class="card-title">{{ question.question_text }}</h5>
+            <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+                <fieldset>
+                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                    <ul class="list-group list-group-flush">
+                        {% for choice in question.choice_set.all %}
+                            <li class="list-group-item"><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br></li>
+                        {% endfor %}
+                    </ul>
+                </fieldset>
+            
+                <div class="card-body">
+                    <input type="submit" value="Vote"><br><br>  <!--button to submit vote-->
+                    <a class="btn btn-dark" href="{% url 'polls:results' question.id %}"><span class="glyphicon glyphicon-pencil">Results</span></a>
+                    <!-- only display options if user is owner of poll -->
+                    {% if var %}
+                        <a class="btn btn-dark" href="{% url 'polls:editpoll' question.id %}"><span class="glyphicon glyphicon-pencil">Edit poll</span></a>
+                        <a class="btn btn-dark" href="{% url 'polls:editchoice' question.id %}"><span class="glyphicon glyphicon-pencil">Edit Choice</span></a>
+                        <a class="btn btn-dark" href="{% url 'polls:deletepoll' question.id %}"><span class="glyphicon glyphicon-pencil">Delete poll</span></a>
+                        <a class="btn btn-dark" href="{% url 'polls:deletechoice' question.id %}"><span class="glyphicon glyphicon-pencil">Delete choice</span></a>
+                    {% endif %}
+                    
+                </div>
+            </form>
+        </div>
+        </div>
+        <!--JS/JQUERY LIBRARIES-->
+        <!--<script src="{% static 'polls/js/bootstrap.min.js' %}"></script>-->
+    </body>  
+</html> 

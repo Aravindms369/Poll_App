@@ -1,0 +1,115 @@
+/* Style for layout page */
+.cardblock{
+    display: inline-block;
+    
+}
+/* background style for login and register page */
+#layoutbg{
+    background-image: url("../image/logpage.jpg"); 
+    background-repeat:no-repeat; 
+    background-size:cover;
+}
+/* background style for index page */
+#indexbg{
+    /* background-color: rgb(247, 244, 244); */
+    background-image: url("../image/logpage.jpg"); 
+    background-repeat:no-repeat; 
+    background-size:cover;
+}
+/* style for fieldset legend tag in forms */
+legend{
+    text-align: center;
+
+}
+/* style for error message during login and register*/
+.errmsg{
+    position: relative;
+    padding:20px;
+    left: 780px;
+    top: 80px;
+    color: seashell;
+    background-color: rgba(245, 53, 53, 0.849);
+}
+/* style for success message after login and register */
+.succmsg{
+    position: relative;
+    padding:20px;
+    left: 1500px;
+    top: -150px;
+    color: rgb(21, 21, 226);
+    background-color: rgba(8, 235, 84, 0.849);
+}
+/* style for forms block */
+.formblock{
+    width: 320px;
+    height: 480px;
+    background: rgb(27, 175, 233);
+    box-shadow: 0 10px 15px rgba(44, 212, 241, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+    color: white;
+}
+/* style for the forms for adding polls and choices */
+.addform {
+   position: absolute;
+   padding:50px;
+   left: 650px;
+   top: 160px;
+   background-color: rgb(224, 155, 241);
+}
+/* style for poll card blocks */
+#pollblock{
+
+    margin-left: 10vh;
+    margin-top: 10vh;
+}
+/* style for alert message block*/
+.alert{
+    width: 100vw;
+}
+
+/* These styles for save button block */
+#save1{
+    position: relative;
+    left: 120px;
+}
+#save2{
+    position: relative;
+    left: 100px;
+}
+/* anchor tags text color style */
+#anchor1{
+    color: seashell;
+}
+/* center align css */
+#cen{
+    padding-left: 800px;
+    color: green;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    /* poll cards block responsive */
+    #pollblock{
+        width: 100%;
+        height: auto;
+        margin-left: 1vh;
+
+    }
+    /* responsive background style for login and register page */
+    #layoutbg{
+        background-color: rgb(160, 187, 236);
+    }
+    /* responsive background style for index page */
+    #indexbg{
+        background-color: rgb(241, 223, 116);
+    }
+
+}
